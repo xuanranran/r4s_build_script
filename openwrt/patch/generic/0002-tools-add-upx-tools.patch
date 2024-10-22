@@ -14,7 +14,7 @@ diff --git a/tools/Makefile b/tools/Makefile
 index 88250b3..e4afc87 100644
 --- a/tools/Makefile
 +++ b/tools/Makefile
-@@ -71,6 +71,7 @@ tools-y += pkgconf
+@@ -65,6 +70,7 @@ tools-y += pkgconf
  tools-y += quilt
  tools-y += squashfs4
  tools-y += sstrip
