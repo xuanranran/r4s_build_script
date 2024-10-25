@@ -244,12 +244,15 @@ git clone https://$github/sbwml/package_new_natflow package/new/natflow
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
-    curl -s https://$mirror/openwrt/patch/firewall4/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch | patch -p1
-    curl -s https://$mirror/openwrt/patch/firewall4/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
-    curl -s https://$mirror/openwrt/patch/firewall4/0003-luci-app-firewall-add-ipv6-nat-option.patch | patch -p1
-    curl -s https://$mirror/openwrt/patch/firewall4/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
-    curl -s https://$mirror/openwrt/patch/firewall4/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
-    [ "$version" = "snapshots-24.10" ] && curl -s https://$mirror/openwrt/patch/firewall4/0400-luci-app-firewall-drop-bcm-fullcone.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0003-luci-app-firewall-add-ipv6-nat-option.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
+    [ "$version" = "snapshots-24.10" ] && {
+        curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0006-luci-app-firewall-enable-hardware-offload-only-on-de.patch | patch -p1
+        curl -s https://$mirror/openwrt/patch/firewall4/$openwrt_version/0400-luci-app-firewall-drop-bcm-fullcone.patch | patch -p1
+    }
 popd
 
 # openssl - quictls
@@ -446,8 +449,10 @@ curl -s https://$mirror/openwrt/patch/luci/dhcp/${openwrt_version}-dhcp.js > fee
 [ "$platform" = "bcm53xx" ] && sed -i -e '/if (has_ap_sae || has_sta_sae) {/{N;N;N;N;d;}' feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js
 
 # ppp - 2.5.0
-rm -rf package/network/services/ppp
-git clone https://$github/sbwml/package_network_services_ppp package/network/services/ppp
+if [ "$version" = "rc2" ]; then
+    rm -rf package/network/services/ppp
+    git clone https://$github/sbwml/package_network_services_ppp package/network/services/ppp
+fi
 
 # odhcpd RFC-9096
 if [ "$version" = "rc2" ]; then
