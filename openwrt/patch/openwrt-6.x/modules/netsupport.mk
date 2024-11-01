@@ -1489,8 +1489,8 @@ define KernelPackage/inet-diag
 endef
 
 define KernelPackage/inet-diag/description
-  Support for INET (TCP, DCCP, etc) socket monitoring interface used by
-  native Linux tools such as ss.
+Support for INET (TCP, DCCP, etc) socket monitoring interface used by
+native Linux tools such as ss.
 endef
 
 $(eval $(call KernelPackage,inet-diag))
@@ -1504,10 +1504,12 @@ define KernelPackage/inet-mptcp-diag
   FILES:=$(LINUX_DIR)/net/mptcp/mptcp_diag.ko
   AUTOLOAD:=$(call AutoProbe,mptcp_diag)
 endef
+
 define KernelPackage/inet-mptcp-diag/description
 Support for INET (MultiPath TCP) socket monitoring interface used by
 native Linux tools such as ss.
 endef
+
 $(eval $(call KernelPackage,inet-mptcp-diag))
 
 

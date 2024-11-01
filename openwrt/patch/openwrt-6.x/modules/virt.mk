@@ -22,7 +22,7 @@ define KernelPackage/kvm-x86
   KCONFIG:=\
 	  CONFIG_KVM \
 	  CONFIG_KVM_MMU_AUDIT=n \
-	  CONFIG_KVM_SMM=y@ge6.6 \
+	  CONFIG_KVM_SMM=y \
 	  CONFIG_VIRTUALIZATION=y
   FILES:= $(LINUX_DIR)/arch/$(LINUX_KARCH)/kvm/kvm.ko
   AUTOLOAD:=$(call AutoProbe,kvm.ko)
@@ -78,12 +78,11 @@ $(eval $(call KernelPackage,kvm-amd))
 define KernelPackage/vfio
   SUBMENU:=Virtualization
   TITLE:=VFIO Non-Privileged userspace driver framework
+  DEPENDS:=@TARGET_x86_64||TARGET_armsr_armv8
   KCONFIG:= \
 	CONFIG_VFIO \
-	CONFIG_VFIO_AMBA=n \
 	CONFIG_VFIO_NOIOMMU=n \
-	CONFIG_VFIO_MDEV=n \
-	CONFIG_VFIO_PLATFORM=n
+	CONFIG_VFIO_MDEV=n
   FILES:= \
 	$(LINUX_DIR)/drivers/vfio/vfio.ko \
 	$(LINUX_DIR)/drivers/vfio/vfio_iommu_type1.ko
@@ -100,7 +99,7 @@ $(eval $(call KernelPackage,vfio))
 define KernelPackage/vfio-pci
   SUBMENU:=Virtualization
   TITLE:=Generic VFIO support for any PCI device
-  DEPENDS:=@PCI_SUPPORT +kmod-vfio +kmod-irqbypass
+  DEPENDS:=@TARGET_x86_64||TARGET_armsr_armv8 @PCI_SUPPORT +kmod-vfio +kmod-irqbypass
   KCONFIG:= \
 	CONFIG_VFIO_PCI \
 	CONFIG_VFIO_PCI_IGD=n
