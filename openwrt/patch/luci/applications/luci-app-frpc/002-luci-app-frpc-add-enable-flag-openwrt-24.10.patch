@@ -1,5 +1,5 @@
---- a/feeds/luci/applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js
-+++ b/feeds/luci/applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js
+--- a/customfeeds/luci/applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js
++++ b/customfeeds/luci/applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js
 @@ -7,11 +7,10 @@
  
  //	[Widget, Option, Title, Description, {Param: 'Value'}],
