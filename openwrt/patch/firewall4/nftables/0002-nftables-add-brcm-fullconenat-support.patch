@@ -167,7 +167,7 @@ Signed-off-by: sbwml <admin@cooluc.com>
  <SCANSTATE_STMT_NAT>{
 --- a/src/statement.c
 +++ b/src/statement.c
-@@ -683,6 +683,7 @@ const char *nat_etype2str(enum nft_nat_e
+@@ -685,6 +685,7 @@ const char *nat_etype2str(enum nft_nat_e
  
  static void nat_stmt_print(const struct stmt *stmt, struct output_ctx *octx)
  {
@@ -175,7 +175,7 @@ Signed-off-by: sbwml <admin@cooluc.com>
  	nft_print(octx, "%s", nat_etype2str(stmt->nat.type));
  	if (stmt->nat.addr || stmt->nat.proto) {
  		switch (stmt->nat.family) {
-@@ -696,11 +697,13 @@ static void nat_stmt_print(const struct
+@@ -698,11 +699,13 @@ static void nat_stmt_print(const struct
  
  		if (stmt->nat.type_flags & STMT_NAT_F_PREFIX)
  			nft_print(octx, " prefix");
