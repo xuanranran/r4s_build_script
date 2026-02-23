@@ -14,7 +14,7 @@ diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nf
 index 40f7f71..38a0d24 100644
 --- a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
 +++ b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
-@@ -773,26 +773,12 @@ return view.extend({
+@@ -773,23 +773,9 @@ return view.extend({
  		return node;
  	},
  
