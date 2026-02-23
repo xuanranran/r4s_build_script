@@ -14,7 +14,7 @@ diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nf
 index 40f7f71..38a0d24 100644
 --- a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
 +++ b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
-@@ -773,21 +773,9 @@
+@@ -773,21 +773,7 @@
  		return node;
  	},
  
@@ -33,8 +33,8 @@ index 40f7f71..38a0d24 100644
  	render([nft, ipt, ipt6]) {
  		const view = E('div');
 
- 		this.checkLegacyRules(ipt, ipt6);
-
+-		this.checkLegacyRules(ipt, ipt6);
+-
  		if (!Array.isArray(nft.nftables))
  			return E('em', _('No nftables ruleset loaded.'));
 
